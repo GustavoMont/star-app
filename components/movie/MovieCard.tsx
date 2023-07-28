@@ -5,13 +5,14 @@ import React from "react";
 
 type Props = {
   movie: Movie;
+  onPress(movie: Movie): void;
 };
 
 const handleTextLimit = (text: string, limit: number) => {
   return text.length >= limit ? `${text.substring(0, limit)}...` : text;
 };
 
-export const MovieCard: React.FC<Props> = ({ movie }) => {
+export const MovieCard: React.FC<Props> = ({ movie, onPress }) => {
   return (
     <Box alignItems="center">
       <Box
@@ -46,7 +47,11 @@ export const MovieCard: React.FC<Props> = ({ movie }) => {
             </HStack>
           </HStack>
         </Stack>
-        <Button rounded={"none"} backgroundColor={"darkBlue.600"}>
+        <Button
+          onPress={() => onPress(movie)}
+          rounded={"none"}
+          backgroundColor={"darkBlue.600"}
+        >
           <Text color={"white"} fontWeight={"bold"}>
             Ver mais
           </Text>

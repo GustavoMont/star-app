@@ -1,10 +1,10 @@
 import { api } from "@/config/api";
 import { ListResponse } from "@/models/ListResponse";
-import { Movie } from "@/models/Movie";
+import { Planet } from "@/models/Planet";
 
-export const listMovies = async () => {
+export const listPlanets = async () => {
   const {
     data: { results },
-  } = await api.get<ListResponse<Movie>>("films/");
+  } = await api.get<ListResponse<Planet>>("planets/");
   return results;
 };

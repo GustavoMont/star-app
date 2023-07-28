@@ -5,7 +5,7 @@ import { Pressable, TextStyle, useColorScheme } from "react-native";
 import Colors from "@/constants/Colors";
 import { StyleProp } from "react-native";
 import { Icon, StatusBar, useTheme } from "native-base";
-import { MaterialIcons } from "@expo/vector-icons";
+import { Ionicons, MaterialIcons } from "@expo/vector-icons";
 import { Layout } from "@/components/common/layout/Layout";
 
 /**
@@ -58,6 +58,16 @@ export default function TabLayout() {
             title: "Personagens",
             tabBarIcon: ({ color }) => (
               <Icon as={MaterialIcons} color={color} name="groups" />
+            ),
+            tabBarLabelStyle,
+          }}
+        />
+        <Tabs.Screen
+          name="planets"
+          options={{
+            title: "Planetas",
+            tabBarIcon: ({ color }) => (
+              <Icon as={Ionicons} color={color} name="planet-sharp" />
             ),
             tabBarLabelStyle,
           }}
