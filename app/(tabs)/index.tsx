@@ -3,7 +3,7 @@ import { Layout } from "@/components/common/layout/Layout";
 import { useQuery } from "@tanstack/react-query";
 import { listMovies } from "@/services/movie-services";
 import { FlatList, HStack, Spinner, VStack, View, useTheme } from "native-base";
-import { Card } from "@/components/common/layout/Card";
+import { MovieCard } from "@/components/movie/MovieCard";
 
 export default function MoviesScreen() {
   const { data: movies, isLoading } = useQuery(["movies"], listMovies);
@@ -11,18 +11,14 @@ export default function MoviesScreen() {
   return (
     <Layout>
       {isLoading ? <Spinner color={colors.white} /> : null}
-      <VStack py="2">
+      <VStack>
         {movies ? (
           <FlatList
             w={"full"}
             data={movies}
             renderItem={({ item }) => (
               <View mb={4}>
-                <Card
-                  date={item.releaseDate}
-                  title={item.title}
-                  description={item.openingCrawl}
-                />
+                <MovieCard movie={item} />
               </View>
             )}
             keyExtractor={({ episodeId }) => episodeId.toString()}

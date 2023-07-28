@@ -1,18 +1,12 @@
-import moment from "moment";
-import { Box, Button, HStack, Heading, Stack, Text } from "native-base";
+import { Character } from "@/models/Character";
+import { Box, Button, HStack, Heading, Stack, Text, VStack } from "native-base";
 import React from "react";
 
 type Props = {
-  title: string;
-  description: string;
-  date: string;
+  character: Character;
 };
 
-const handleTextLimit = (text: string, limit: number) => {
-  return text.length >= limit ? `${text.substring(0, limit)}...` : text;
-};
-
-export const Card: React.FC<Props> = ({ description, title, date }) => {
+export const CharacterCard: React.FC<Props> = ({ character }) => {
   return (
     <Box alignItems="center">
       <Box
@@ -23,10 +17,10 @@ export const Card: React.FC<Props> = ({ description, title, date }) => {
         borderWidth="1"
         backgroundColor={"dark.50"}
       >
-        <Stack p="4" space={3}>
-          <Stack space={2}>
+        <Stack p="4">
+          <Stack>
             <Heading color={"yellow.400"} size="md" ml="-1">
-              {title}
+              {character.name}
             </Heading>
             <Text
               fontSize="xs"
@@ -34,17 +28,21 @@ export const Card: React.FC<Props> = ({ description, title, date }) => {
               fontWeight="500"
               ml="-0.5"
               mt="-1"
-            >
-              {handleTextLimit(description, 140)}
-            </Text>
+            ></Text>
           </Stack>
           <Text fontWeight="400"></Text>
-          <HStack alignItems="center" space={4} justifyContent="space-between">
-            <HStack alignItems="center">
-              <Text color="yellow.600" fontWeight="400">
-                Lançado em: {moment(date).format("DD/MM/YYYY")}
+          <HStack alignItems="center" justifyContent="space-between">
+            <VStack>
+              <Text color="yellow.300" fontWeight="400">
+                Cor dos olhos: {character.eyeColor}
               </Text>
-            </HStack>
+              <Text color="cyan.300" fontWeight="400">
+                Cabelo: {character.hairColor}
+              </Text>
+              <Text color="cyan.300" fontWeight="400">
+                Altura: {character.height}cm
+              </Text>
+            </VStack>
           </HStack>
         </Stack>
         <Button rounded={"none"} backgroundColor={"darkBlue.600"}>
